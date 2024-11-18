@@ -1,0 +1,43 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body style="background-image: url('https://as2.ftcdn.net/jpg/00/97/99/67/500_F_97996704_kSfUEPV3k9X83QAgZd8jzGxn5fph1PTb.jpg');
+    background-repeat: no-repeat; /* Optional: controls how the image repeats */
+    background-size: cover; /* Optional: controls how the image fills the background */
+    background-position: center; /* Optional: controls the placement of the image */" >
+    <h2>Create New Listing</h2>
+    <form action="{% url 'create' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" class="form-control" id="title" placeholder="Title">
+            </div>
+            <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" name="description" class="form-control" id="description" placeholder="Description">
+            </div>
+            <div class="form-group">
+            <label for="imageurl">Image URL</label>
+            <input type="text" name="imageurl" class="form-control" id="imageurl" placeholder="Image URL">
+            </div>
+            <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" min="0" name="price" class="form-control" id="price" placeholder="Price">
+            </div>
+            <div class="form-group">
+                <label for="category">Choose a category:</label>
+                <select name="category" id="category">
+                    {% for cat in categories %}
+                        <option value="{{cat}}">{{ cat }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-success">Create New Listing!</button>
+    </form>
+
+    
+{% endblock %}

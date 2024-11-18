@@ -1,0 +1,28 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body style="background-image: url('http://www.pixelstalk.net/wp-content/uploads/2016/06/Light-Blue-HD-Backgrounds-Free-Download.jpg');
+    background-repeat: no-repeat; /* Optional: controls how the image repeats */
+    background-size: cover; /* Optional: controls how the image fills the background */
+    background-position: center; /* Optional: controls the placement of the image */" >
+    <h2 style="color: white;">Watchlist</h2>
+   
+    <div class="row mx-4">
+        {% for listing in listings %}
+            <div class="col-md-4 mb-4"> <!-- Adjusted for Bootstrap grid -->
+                <div class="card mx-auto" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ listing.imageUrl }}" alt="{{ listing.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ listing.title }}</h5>
+                        <p class="card-text">{{ listing.description }}</p>
+                        <a href="{% url 'listing' id=listing.id %}" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>    
+{% endblock %}
